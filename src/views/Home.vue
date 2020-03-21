@@ -1,8 +1,10 @@
 <template>
-  <div class="home">
+  <div class="home scroll-bar" :style="`
+    
+  `">
     <div
       @click="itemClick(code)"
-      class="item"
+      :class="['item', $store.state.currentActiveAnima === code ? 'active' : '']"
       v-for="({name, code}, index) in list"
       :key="`${name}-${index}`"
     >
@@ -87,18 +89,22 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "~@/assets/style/public.less";
+
 * {
   transition: all 0.3s ease-in-out;
 }
 .home {
   width: 80%;
-  height: 800px;
   margin: 0px auto;
   padding: 50px 20px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+  transition: all 0.3s ease-in-out;
+
+  overflow-y: auto;
 
   @media screen and (min-width: 1920px) {
     width: 1536px‬;
@@ -116,9 +122,26 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  transition: all 0.4s ease-in-out;
+
+  position: relative;
+
+  // overflow: hidden;
 
   &:hover {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  &.active {
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      width: ~"calc(200px + 10px)";
+      height: ~"calc(200px + 10px)";
+      border: 2px solid #5D6D7E;
+      border-radius: 5px;
+    }
   }
 }
 .grow {

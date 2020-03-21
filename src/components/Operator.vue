@@ -1,6 +1,6 @@
 <template>
   <div id="operator-container">
-    <input class="check-btn" type="checkbox" />
+    <input class="check-btn" type="checkbox" v-model="showOperator" />
     <div class="check-btn">
       <span></span>
       <span></span>
@@ -10,7 +10,9 @@
     <div class="op-content">
       <header>Animation Config</header>
       <main>
-        <component :is="componentId"></component>
+        <!-- <transition enter-active-class="enter-anima" leave-active-class="leave-anima"> -->
+          <component :is="componentId"></component>
+        <!-- </transition> -->
       </main>
     </div>
   </div>
@@ -54,6 +56,21 @@ const promisedTpls = requireComponent.keys().reduce((result, fileName) => {
 export default {
   components: {
     ...promisedTpls
+  },
+
+  data() {
+    return {
+      showOperator: this.$store.state.showOperator
+    };
+  },
+
+  watch: {
+    showOperator(flag) {
+      this.$store.commit("UPDATE", {
+        key: "showOperator",
+        value: flag
+      });
+    }
   },
 
   computed: {
@@ -111,7 +128,7 @@ export default {
   .op-content {
     width: 300px;
     height: 100%;
-    position: fixed;
+    // position: fixed;
     right: 0;
     top: 0;
     overflow-x: hidden;
@@ -119,7 +136,8 @@ export default {
     background-color: #fff;
     box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
     z-index: 98;
-    transform: translateX(120%);
+    // transform: translateX(120%);
+    margin-right: -320px;
     transition: all 0.3s ease-in-out;
 
     header {
@@ -160,9 +178,39 @@ export default {
         }
       }
       & ~ div.op-content {
-        transform: translateX(0%);
+        // transform: translateX(0%);
+        margin-right: 0;
       }
     }
+  }
+}
+
+.enter-anima {
+  position: absolute;
+  animation: moveX1 0.3s ease 0s;
+}
+.leave-anima {
+  position: absolute;
+  animation: moveX2 0.3s ease 0s;
+}
+@keyframes moveX1 {
+  0% {
+    // transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    // transform: translateX(0%);
+    opacity: 1;
+  }
+}
+@keyframes moveX2 {
+  0% {
+    // transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    // transform: translateX(100%);
+    opacity: 0;
   }
 }
 </style>

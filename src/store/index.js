@@ -5,7 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    showOperator: false,
     currentActiveAnima: undefined,
+    tpl0001: {
+      bgColor: "#48C9B0"
+    },
     tpl0002: {
       bgColor: "#48C9B0"
     },
@@ -18,12 +22,17 @@ export default new Vuex.Store({
       state.currentActiveAnima = val;
     },
 
-
-    updateStyle0002(state, { key, value}) {
+    updateStyle0001(state, { key, value }) {
+      state.tpl0001[key] = value
+    },
+    updateStyle0002(state, { key, value }) {
       state.tpl0002[key] = value
     },
-    updateStyle0003(state, { key, value}) {
+    updateStyle0003(state, { key, value }) {
       state.tpl0003[key] = value;
+    },
+    UPDATE(state, { key, value }) {
+      state[key] = value;
     }
   },
   actions: {

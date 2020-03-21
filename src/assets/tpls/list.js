@@ -1,4 +1,4 @@
-module.exports =  [
+module.exports = [
     {
         code: '0001',
         category: '',
@@ -21,6 +21,18 @@ module.exports =  [
         code: '0004',
         category: '',
         name: 'tpl-0004',
+        tag: [],
+    },
+    {
+        code: '0005',
+        category: '',
+        name: 'tpl-0005',
+        tag: [],
+    },
+    {
+        code: '0006',
+        category: '',
+        name: 'tpl-0006',
         tag: [],
     }
 ]

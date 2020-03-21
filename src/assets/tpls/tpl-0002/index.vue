@@ -1,6 +1,6 @@
 <template>
   <main>
-    <span :style="`color:${bgColor};`">Button Animation</span>
+    <span :style="`color:#fff;font-weight:bold;`">Button Animation</span>
     <div class="btn" :style="`
             background-color: ${bgColor};
         `">
@@ -28,6 +28,11 @@ main {
   height: 100%;
   position: relative;
   overflow: hidden;
+  background-color: #808b96;
+  border-radius: 5px;
+  &:hover {
+    box-shadow: 0px 20px 40px currentColor;
+  }
 
   & > span {
     position: absolute;
@@ -80,23 +85,21 @@ main {
 @keyframes moveTop1 {
   0% {
     top: 50%;
-    font-size: 1rem;
-    text-shadow: 0px 2px 20px currentColor;
+    font-size: 1.2rem;
   }
   10% {
     top: 15%;
     font-size: 0.65rem;
-    text-shadow: 0px 2px 10px currentColor;
+    font-weight: normal;
   }
   90% {
     top: 15%;
     font-size: 0.65rem;
-    text-shadow: 0px 2px 10px currentColor;
+    font-weight: normal;
   }
   100% {
     top: 50%;
-    font-size: 1rem;
-    text-shadow: 0px 2px 20px currentColor;
+    font-size: 1.2rem;
   }
 }
 

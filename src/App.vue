@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <operator />
     <router-view />
+    <operator />
   </div>
 </template>
 
@@ -22,8 +22,11 @@ html,
 body,
 #app {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f6f6f6;
+  overflow-x: hidden;
+  display: flex;
+
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

@@ -73,11 +73,12 @@ export default {
   },
   computed: {
     h_rotate() {
-      if (this.hour === 0) this.count_h++;
+      if (this.hour === 0 && this.minute === 0 && this.second === 0)
+        this.count_h++;
       return this.count_h * 360 + this.hour * 30 + (this.minute / 60) * 30;
     },
     m_rotate() {
-      if (this.minute === 0) this.count_m++;
+      if (this.minute === 0 && this.second === 0) this.count_m++;
       return this.count_m * 360 + this.minute * 6 + (this.second / 60) * 6;
     },
     s_rotate() {
@@ -100,7 +101,7 @@ export default {
           this.hour = 0;
           this.minute = 0;
           this.second = 0;
-          this.duration = "all 0.8s ease"
+          this.duration = "all 0.8s ease";
           this.interval = undefined;
           this.count_h = 0;
           this.count_m = 0;
@@ -146,6 +147,11 @@ main {
   overflow: hidden;
   position: relative;
 
+  background-color: #273746;
+  border-radius: 5px;
+  &:hover {
+    box-shadow: 0px 20px 40px currentColor;
+  }
   img#outer {
     width: 95%;
     position: absolute;
