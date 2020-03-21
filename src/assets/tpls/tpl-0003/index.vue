@@ -69,19 +69,7 @@ export default {
   },
 
   mounted() {
-    if (!this.interval) {
-      this.interval = setInterval(() => {
-        const time = new Date();
-        this.hour = time.getHours() % 12;
-        this.minute = time.getMinutes();
-        this.second = time.getSeconds();
-        // console.log(`${this.hour}:${this.minute}:${this.second}`)
-        this.count++;
-      }, 100);
-    }
-    setTimeout(() => {
-      this.duration = "all 1s linear";
-    }, 2000);
+    this.start();
   },
   computed: {
     h_rotate() {
@@ -98,6 +86,49 @@ export default {
     },
     top_circle_rotate() {
       return Math.floor(this.count / 10) * 6;
+    },
+    status() {
+      return this.$store.state.tpl0003.status;
+    }
+  },
+  watch: {
+    status: {
+      deep: true,
+      handler(s) {
+        if (s) {
+          clearInterval(this.interval);
+          this.hour = 0;
+          this.minute = 0;
+          this.second = 0;
+          this.duration = "all 0.8s ease"
+          this.interval = undefined;
+          this.count_h = 0;
+          this.count_m = 0;
+          this.count_s = 0;
+          this.count = 0;
+          setTimeout(() => {
+            this.duration = "all 2s ease-out";
+            this.start();
+          }, 1300);
+        }
+      }
+    }
+  },
+  methods: {
+    start() {
+      if (!this.interval) {
+        this.interval = setInterval(() => {
+          const time = new Date();
+          this.hour = time.getHours() % 12;
+          this.minute = time.getMinutes();
+          this.second = time.getSeconds();
+          // console.log(`${this.hour}:${this.minute}:${this.second}`)
+          this.count++;
+        }, 100);
+      }
+      setTimeout(() => {
+        this.duration = "all 1s linear";
+      }, 2000);
     }
   }
 };
@@ -164,7 +195,7 @@ main {
   }
 
   &:hover {
-      cursor: pointer;
+    cursor: pointer;
   }
 }
 </style>

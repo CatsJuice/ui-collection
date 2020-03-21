@@ -8,6 +8,9 @@ export default new Vuex.Store({
     currentActiveAnima: undefined,
     tpl0002: {
       bgColor: "#48C9B0"
+    },
+    tpl0003: {
+      status: 0,
     }
   },
   mutations: {
@@ -18,6 +21,9 @@ export default new Vuex.Store({
 
     updateStyle0002(state, { key, value}) {
       state.tpl0002[key] = value
+    },
+    updateStyle0003(state, { key, value}) {
+      state.tpl0003[key] = value;
     }
   },
   actions: {
