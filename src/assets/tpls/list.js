@@ -34,5 +34,11 @@ module.exports = [
         category: '',
         name: 'tpl-0006',
         tag: [],
-    }
+    },
+    // {
+    //     code: '0007',
+    //     category: '',
+    //     name: 'tpl-0007',
+    //     tag: [],
+    // },
 ]
