@@ -1,9 +1,18 @@
 <template>
   <div id="app">
+    <operator />
     <router-view />
   </div>
 </template>
 
+<script>
+import Operator from "./components/Operator";
+export default {
+  components: {
+    Operator
+  }
+}
+</script>
 <style lang="less">
 * {
   margin: 0;
@@ -14,7 +23,7 @@ body,
 #app {
   width: 100%;
   height: 100%;
-  background-color: #fafafa;
+  background-color: #f6f6f6;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

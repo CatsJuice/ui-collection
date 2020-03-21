@@ -1,9 +1,11 @@
 <template>
   <div class="home">
-    <div 
-      class="item" 
-      v-for="({name}, index) in list" 
-      :key="`${name}-${index}`">
+    <div
+      @click="itemClick(code)"
+      class="item"
+      v-for="({name, code}, index) in list"
+      :key="`${name}-${index}`"
+    >
       <component :is="name" />
     </div>
     <div v-for="(item, index) in t" :key="`grow-${index}`" class="grow"></div>
@@ -19,7 +21,7 @@ const requireComponent = require.context(
   // 是否查询其子目录
   true,
   // 匹配基础组件文件名的正则表达式
-  /\w+\.(vue)$/,
+  /(index\.vue)$/,
   // 懒加载
   "lazy"
 );
@@ -68,9 +70,14 @@ export default {
       for (let i = page * size; i < upLimit; i++) {
         const { code, name } = tplList[i];
         this.list.push({
-          name: `tpl-${code}`
+          // name: `tpl-${code}`,
+          code,
+          name
         });
       }
+    },
+    itemClick(code) {
+      this.$store.commit("updateCurrentActiveAnimation", code);
     }
   },
   components: {
@@ -111,7 +118,7 @@ export default {
   justify-content: center;
 
   &:hover {
-    box-shadow: 0px 0px 15px rgba(0,0,0,.2);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   }
 }
 .grow {
