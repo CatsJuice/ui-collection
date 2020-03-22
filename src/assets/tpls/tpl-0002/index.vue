@@ -29,6 +29,7 @@ main {
   position: relative;
   overflow: hidden;
   background-color: #808b96;
+  color: #808b96;
   border-radius: 5px;
   &:hover {
     box-shadow: 0px 20px 40px currentColor;

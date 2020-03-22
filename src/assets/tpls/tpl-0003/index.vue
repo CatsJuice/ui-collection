@@ -148,6 +148,7 @@ main {
   position: relative;
 
   background-color: #273746;
+  color: #273746;
   border-radius: 5px;
   &:hover {
     box-shadow: 0px 20px 40px currentColor;
