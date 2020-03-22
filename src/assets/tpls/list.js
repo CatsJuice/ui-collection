@@ -55,10 +55,17 @@ module.exports = [
         description: "Google Material Design 宣传动画 1"
     },
     {
-        code: '0008',
+        code: '0009',
         category: '',
         name: 'tpl-0009',
         tag: [],
         description: "聊天界面矢量动效",
-    }
+    },
+    {
+        code: '0010',
+        category: '',
+        name: 'tpl-0010',
+        tag: [],
+        description: "列表界面过渡动画",
+    },
 ]
