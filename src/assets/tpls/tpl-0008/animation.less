@@ -1,0 +1,231 @@
+@bg      : #f8a5c2;
+@duration: 5s;
+
+div.con {
+    .card {
+        height: 100%;
+
+        &:nth-child(1) {
+            animation: card1 @duration ease 0s infinite;
+        }
+
+        &:nth-child(2) {
+            animation: card2 @duration ease 0s infinite;
+        }
+
+        &:nth-child(3) {
+            animation: card3 @duration ease 0s infinite;
+        }
+
+        &:nth-child(4) {
+            animation: card4 @duration ease 0s infinite;
+        }
+
+        &:nth-child(5) {
+            flex-grow: 1;
+            animation: card5 @duration ease 0s infinite;
+        }
+    }
+}
+
+@keyframes card1 {
+    0% {
+        width           : 0px;
+        margin-right    : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    10% {
+        // 宽度明显变化， 高度几乎不变
+        width           : 0px;
+        margin-right    : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    20% {
+        // 高度明显变化， 宽度基本不变, 填充颜色
+        width           : 32px;
+        margin-right    : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    30% {
+        // 增加阴影
+        width           : 20px;
+        margin-right    : 12px;
+        background-color: rgba(255, 255, 255, 1);
+
+    }
+
+    40% {
+        // 等待 ripple 动画
+        width           : 20px;
+        margin-right    : 12px;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    50% {
+        // ripple 动画结束
+        width           : 20px;
+        margin-right    : 12px;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    100% {
+        width           : 20px;
+        margin-right    : 12px;
+        background-color: rgba(255, 255, 255, 1);
+    }
+}
+
+@keyframes card2 {
+    0% {
+        width           : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    10% {
+        // 宽度明显变化， 高度几乎不变
+        width           : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    20% {
+        // 高度明显变化， 宽度基本不变, 填充颜色
+        width           : 32px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    30% {
+        // 增加阴影
+        width           : 32px;
+        background-color: rgba(255, 255, 255, 1);
+
+    }
+
+    40% {
+        // 等待 ripple 动画
+
+    }
+
+    50% {
+        // ripple 动画结束
+
+    }
+
+    100% {}
+}
+
+@keyframes card3 {
+    0% {
+        width           : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    10% {
+        // 宽度明显变化， 高度几乎不变
+        width           : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    20% {
+        // 高度明显变化， 宽度基本不变, 填充颜色
+        width           : 32px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    30% {
+        // 增加阴影
+        width           : 32px;
+        background-color: rgba(255, 255, 255, 1);
+
+    }
+
+    40% {
+        // 等待 ripple 动画
+
+    }
+
+    50% {
+        // ripple 动画结束
+
+    }
+
+    100% {}
+}
+
+@keyframes card4 {
+    0% {
+        width           : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    10% {
+        // 宽度明显变化， 高度几乎不变
+        width           : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    20% {
+        // 高度明显变化， 宽度基本不变, 填充颜色
+        width           : 32px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    30% {
+        // 增加阴影
+        width           : 32px;
+        background-color: rgba(255, 255, 255, 1);
+
+    }
+
+    40% {
+        // 等待 ripple 动画
+
+    }
+
+    50% {
+        // ripple 动画结束
+
+    }
+
+    100% {}
+}
+
+@keyframes card5 {
+    0% {
+        width           : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    10% {
+        // 宽度明显变化， 高度几乎不变
+        width           : 0px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    20% {
+        // 高度明显变化， 宽度基本不变, 填充颜色
+        width           : 32px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    30% {
+        // 增加阴影
+        width           : 32px;
+        background-color: rgba(255, 255, 255, 1);
+
+    }
+
+    40% {
+        // 等待 ripple 动画
+
+    }
+
+    50% {
+        // ripple 动画结束
+
+    }
+
+    100% {}
+}

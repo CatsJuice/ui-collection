@@ -20,8 +20,8 @@ export default {};
 @m: 10px;
 @dur: 1.2s;
 main {
-  background-color: #3498DB;
-  color: #3498DB;
+  background-color: #3498db;
+  color: #3498db;
 
   div.con {
     width: 60%;
@@ -94,11 +94,11 @@ main {
   }
   50% {
     margin-left: ~"calc(@{h} + @{m} * 1.5)";
-    background-color: #F1C40F;
+    background-color: #f1c40f;
   }
   100% {
     margin-left: ~"calc(@{h} + @{m} * 1.5)";
-    background-color: #F1C40F;
+    background-color: #f1c40f;
   }
 }
 
@@ -106,15 +106,21 @@ main {
 @keyframes dot4 {
   0% {
     transform: rotate(0);
-    background-color: #F1C40F;
+    background-color: #f1c40f;
   }
   50% {
+    transform: rotate(180deg) translate(0, ~"calc(@{m})");
+    background-color: #fff;
+  }
+  60% {
     transform: rotate(180deg);
     background-color: #fff;
+    transform: rotate(180deg) translate(0, 0);
   }
   100% {
     transform: rotate(180deg);
     background-color: #fff;
+    transform: rotate(180deg) translate(0, 0);
   }
 }
 </style>

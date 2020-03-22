@@ -1,8 +1,11 @@
 <template>
-  <div class="item-container" :style="`
+  <div
+    :class="['item-container', active ? 'force-active' : '']"
+    :style="`
     background-color: ${bgColor};
     color: ${bgColor};
-  `">
+  `"
+  >
     <div class="animation-container">
       <span></span>
       <span></span>
@@ -12,10 +15,29 @@
 </template>
 
 <script>
+import { setInterval } from "timers";
 export default {
+  data() {
+    return {
+      active: false,
+      interval: undefined
+    };
+  },
+  mounted() {
+    this.start();
+  },
+  methods: {
+    start() {
+      if (!this.interval) {
+        this.interval = setInterval(() => {
+          this.active = !this.active;
+        }, 2000);
+      }
+    }
+  },
   computed: {
     bgColor() {
-      return this.$store.state.tpl0001.bgColor
+      return this.$store.state.tpl0001.bgColor;
     }
   }
 };
@@ -64,10 +86,11 @@ export default {
       }
     }
   }
-
   &:hover {
     box-shadow: 0px 30px 40px currentColor;
-
+  }
+  &:hover,
+  &.force-active {
     span {
       &:nth-child(1) {
         width: 54%;
