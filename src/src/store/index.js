@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     showOperator: false,
     currentActiveAnima: undefined,
+    scrollTop: 0,
     tpl0001: {
       bgColor: "#48C9B0"
     },
@@ -20,6 +21,9 @@ export default new Vuex.Store({
   mutations: {
     updateCurrentActiveAnimation(state, val) {
       state.currentActiveAnima = val;
+    },
+    updateScrollTop(state, px) {
+      state.scrollTop = px;
     },
 
     updateStyle0001(state, { key, value }) {
