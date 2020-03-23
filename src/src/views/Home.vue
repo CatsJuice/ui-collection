@@ -2,6 +2,9 @@
   <div class="home scroll-bar" :style="`height: ${wrapBoxHeight}px`">
     <div class="mask" v-if="curAni !== -1 && !!curAni"></div>
     <div
+      :ref="`item${code}`"
+      @mouseover="itemMouseover(code)"
+      @mouseout="itemMouseout(code)"
       @click="itemClick(code, index)"
       :class="['item', curAni === code ? 'active' : '']"
       v-for="({name, code, x,y,z}, index) in list"
@@ -27,6 +30,7 @@
                     margin-top none,
       `"
     >
+      <component :is="name" />
       <div
         class="back-btn"
         @click.stop="itemClick(-1, -1)"
@@ -39,7 +43,6 @@
       >
         <img src="@/assets/back.svg" />
       </div>
-      <component :is="name" />
     </div>
   </div>
 </template>
@@ -122,6 +125,17 @@ export default {
         });
       }
       this.$store.commit("updateCurrentActiveAnimation", code);
+    },
+
+    itemMouseover(code) {
+      // console.log(this.$refs[`item${code}`].currentStyle)
+      const color = window
+        .getComputedStyle(this.$refs[`item${code}`][0].firstChild, null)
+        .getPropertyValue("background-color");
+      this.$refs[`item${code}`][0].style.boxShadow = `0px 20px 40px ${color}`;
+    },
+    itemMouseout(code) {
+      this.$refs[`item${code}`][0].style.boxShadow = `0px 5px 10px rgba(0,0,0,.2)`;
     }
   },
   components: {
@@ -132,7 +146,7 @@ export default {
       return this.$store.state.currentActiveAnima;
     },
     scrollTop() {
-     return this.$store.state.scrollTop;
+      return this.$store.state.scrollTop;
     }
   }
 };
@@ -215,7 +229,7 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 100;
-  background-color: rgba(255,255,255,.5);
+  background-color: rgba(255, 255, 255, 0.5);
   position: fixed;
   left: 0;
   top: 0;

@@ -68,4 +68,11 @@ module.exports = [
         tag: [],
         description: "列表界面过渡动画",
     },
+    {
+        code: '0011',
+        category: '',
+        name: 'tpl-0011',
+        tag: [],
+        description: "Apple Switch Buttn Effect",
+    },
 ]

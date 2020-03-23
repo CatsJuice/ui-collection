@@ -55,6 +55,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #48c9b0;
   .item-container {
     width: 200px;
     height: 200px;
@@ -97,9 +98,7 @@ main {
         }
       }
     }
-    &:hover {
-      box-shadow: 0px 30px 40px currentColor;
-    }
+
     &:hover,
     &.force-active {
       span {
@@ -118,5 +117,6 @@ main {
       }
     }
   }
+  
 }
 </style>
