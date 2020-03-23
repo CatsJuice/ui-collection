@@ -1,41 +1,43 @@
 <template>
   <main>
-    <div class="screen">
-      <header>
-        <div class="status"></div>
-      </header>
-      <section>
-        <div class="content1">
-          <div class="c1"></div>
+    <div class="wrap">
+      <div class="screen">
+        <header>
+          <div class="status"></div>
+        </header>
+        <section>
+          <div class="content1">
+            <div class="c1"></div>
 
-          <div class="c2"></div>
-          <div class="c3"></div>
-          <div class="c4"></div>
+            <div class="c2"></div>
+            <div class="c3"></div>
+            <div class="c4"></div>
 
-          <div class="c1"></div>
+            <div class="c1"></div>
 
-          <div class="c5">
-            <div class="c6"></div>
-            <div class="c7">
-              <div class="c2"></div>
-              <div class="c3"></div>
-              <div class="c4"></div>
+            <div class="c5">
+              <div class="c6"></div>
+              <div class="c7">
+                <div class="c2"></div>
+                <div class="c3"></div>
+                <div class="c4"></div>
+              </div>
+            </div>
+
+            <div class="c5">
+              <div class="c6"></div>
+              <div class="c7">
+                <div class="c2"></div>
+                <div class="c3"></div>
+                <div class="c4"></div>
+              </div>
             </div>
           </div>
+          <div class="content2"></div>
+        </section>
 
-          <div class="c5">
-            <div class="c6"></div>
-            <div class="c7">
-              <div class="c2"></div>
-              <div class="c3"></div>
-              <div class="c4"></div>
-            </div>
-          </div>
-        </div>
-        <div class="content2"></div>
-      </section>
-
-      <div class="float-btn"></div>
+        <div class="float-btn"></div>
+      </div>
     </div>
   </main>
 </template>
@@ -57,73 +59,83 @@ main {
   position: relative;
   background-color: #f4d03f;
   color: #f4d03f;
-  border-radius: 5px;
-  &:hover {
-    box-shadow: 0px 20px 40px currentColor;
-  }
-
-  div.screen {
-    width: @w1;
-    height: 80%;
-    background-color: #f5f5f5;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-    animation: screen 5s ease 0s infinite;
+  .wrap {
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-
-    header {
-      width: 100%;
-      background-color: #2980b9;
-      height: 20px;
-
-      div.status {
-        width: 100%;
-        height: 7px;
-        background-color: rgba(0, 0, 0, 0.4);
-      }
+    position: relative;
+    background-color: #f4d03f;
+    color: #f4d03f;
+    border-radius: 5px;
+    &:hover {
+      box-shadow: 0px 20px 40px currentColor;
     }
 
-    section {
-      width: 100%;
-      animation: display 5s ease 0s infinite;
-      height: ~"calc(100% - 20px)";
-      // background-color: cyan;
+    div.screen {
+      width: @w1;
+      height: 80%;
+      background-color: #f5f5f5;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      animation: screen 5s ease 0s infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-      .content1 {
-        padding: 2px 0;
+      header {
         width: 100%;
-        height: 100%;
-        background-color: #fff;
-        overflow: hidden;
-      }
-      .content2 {
-        width: 100%;
-        height: 100%;
-        background-color: #aeb6bf;
-        margin-top: 10px;
-        border-radius: 5px;
-      }
-    }
+        background-color: #2980b9;
+        height: 20px;
 
-    div.float-btn {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      position: absolute;
-      background-color: #6200ee;
-      //   bottom: 5px;
-      top: ~"calc(100% - 25px)";
-      right: 5px;
-      box-shadow: 0px 0px 12px #6200ee;
-      animation: floatBtn 5s 0s infinite;
+        div.status {
+          width: 100%;
+          height: 7px;
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+      }
+
+      section {
+        width: 100%;
+        animation: display 5s ease 0s infinite;
+        height: ~"calc(100% - 20px)";
+        // background-color: cyan;
+
+        .content1 {
+          padding: 2px 0;
+          width: 100%;
+          height: 100%;
+          background-color: #fff;
+          overflow: hidden;
+        }
+        .content2 {
+          width: 100%;
+          height: 100%;
+          background-color: #aeb6bf;
+          margin-top: 10px;
+          border-radius: 5px;
+        }
+      }
+
+      div.float-btn {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        position: absolute;
+        background-color: #6200ee;
+        //   bottom: 5px;
+        top: ~"calc(100% - 25px)";
+        right: 5px;
+        box-shadow: 0px 0px 12px #6200ee;
+        animation: floatBtn 5s 0s infinite;
+      }
     }
   }
 }
-
 .content1 {
   .c1 {
     margin: 2px 0;
@@ -227,7 +239,6 @@ main {
   }
   70% {
     top: ~"calc(100% - 25px)";
-
   }
   100% {
     top: ~"calc(100% - 25px)";

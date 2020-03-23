@@ -1,12 +1,14 @@
 <template>
-  <main>
-    <span :style="`color:#fff;font-weight:bold;`">Button Animation</span>
-    <div class="btn" :style="`
+  <main :style="`color:#fff;font-weight:bold;`">
+    <div class="container">
+      <span :style="`color:#fff;font-weight:bold;`">Button Animation</span>
+      <div class="btn" :style="`
             background-color: ${bgColor};
         `">
-      <span>Got It!</span>
-      <div class="img" :style="`background-color:${bgColor};`">
-        <img src="./assets/imgs/check.svg" />
+        <span>Got It!</span>
+        <div class="img" :style="`background-color:${bgColor};`">
+          <img src="./assets/imgs/check.svg" />
+        </div>
       </div>
     </div>
   </main>
@@ -26,59 +28,67 @@ export default {
 main {
   width: 100%;
   height: 100%;
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #808b96;
-  color: #808b96;
-  border-radius: 5px;
-  &:hover {
-    box-shadow: 0px 20px 40px currentColor;
-  }
-
-  & > span {
-    position: absolute;
-    width: 90%;
-    top: 50%;
-    left: 5%;
-
-    animation: moveTop1 5s ease 0s infinite normal;
-  }
-
-  .btn {
-    height: 40px;
-    border-radius: 20px;
-    line-height: 40px;
-    color: #fff;
-    font-weight: bold;
-    font-size: 0.9rem;
-    position: absolute;
+  div.container {
+    width: 200px;
+    height: 200px;
+    position: relative;
     overflow: hidden;
-    user-select: none;
-    cursor: pointer;
+    background-color: #808b96;
+    color: #808b96;
+    border-radius: 5px;
+    &:hover {
+      box-shadow: 0px 20px 40px currentColor;
+    }
 
-    width: 40px;
-
-    margin-top: 120%;
-    margin-left: 50%;
-    transition: all 0.2s ease-in-out;
-    transform: translate(-50%, -50%);
-    animation: moveTop2 5s ease 0s infinite normal;
-
-    .img {
-      transition: all 0.2s ease-in-out;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    & > span {
       position: absolute;
-      right: 50%;
+      width: 90%;
       top: 50%;
-      transform: translate(50%, -50%);
-      animation: moveTop3 5s ease 0s infinite normal;
-      img {
-        width: 50%;
-        height: 50%;
+      left: 5%;
+
+      animation: moveTop1 5s ease 0s infinite normal;
+    }
+
+    .btn {
+      height: 40px;
+      border-radius: 20px;
+      line-height: 40px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 0.9rem;
+      position: absolute;
+      overflow: hidden;
+      user-select: none;
+      cursor: pointer;
+
+      width: 40px;
+
+      margin-top: 120%;
+      margin-left: 50%;
+      transition: all 0.2s ease-in-out;
+      transform: translate(-50%, -50%);
+      animation: moveTop2 5s ease 0s infinite normal;
+
+      .img {
+        transition: all 0.2s ease-in-out;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 50%;
+        top: 50%;
+        transform: translate(50%, -50%);
+        animation: moveTop3 5s ease 0s infinite normal;
+        img {
+          width: 50%;
+          height: 50%;
+        }
       }
     }
   }

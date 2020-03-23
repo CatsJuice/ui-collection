@@ -1,52 +1,54 @@
 <template>
   <main>
-    <img id="outer" class="c" src="./assets/imgs/outer.png" />
-    <div class="watch-con c">
-      <img id="bg" class="c" src="./assets/imgs/bg.png" />
+    <div class="watch-con">
+      <img id="outer" class="c" src="./assets/imgs/outer.png" />
+      <div class="watch-con c">
+        <img id="bg" class="c" src="./assets/imgs/bg.png" />
 
-      <img
-        :style="`
+        <img
+          :style="`
         transition: all 1s linear;
         transform: translate(-49.5%, -49.6%) rotate(${top_circle_rotate}deg);
         transform-origin: 49.8% 50.2%;
       `"
-        id="t-c-pointer"
-        class="c"
-        src="./assets/imgs/top-circle-pointer.svg"
-      />
+          id="t-c-pointer"
+          class="c"
+          src="./assets/imgs/top-circle-pointer.svg"
+        />
 
-      <img
-        :style="`
+        <img
+          :style="`
         transition: ${duration};
         transform: translate(-49.5%, -49.6%) rotate(${m_rotate}deg);
         transform-origin: 49.8% 50.2%;
       `"
-        id="minute"
-        class="c"
-        src="./assets/imgs/minute.svg"
-      />
+          id="minute"
+          class="c"
+          src="./assets/imgs/minute.svg"
+        />
 
-      <img
-        :style="`
+        <img
+          :style="`
         transition: ${duration};
         transform: translate(-49.6%, -50.4%) rotate(${h_rotate}deg);
         transform-origin: 49.9% 51%;
       `"
-        id="hour"
-        class="c"
-        src="./assets/imgs/hour.svg"
-      />
+          id="hour"
+          class="c"
+          src="./assets/imgs/hour.svg"
+        />
 
-      <img
-        :style="`
+        <img
+          :style="`
         transition: ${duration};
         transform: translate(-49.8%, -50.2%) rotate(${s_rotate}deg);
         transform-origin: 50% 51%;
       `"
-        id="second"
-        class="c"
-        src="./assets/imgs/second.svg"
-      />
+          id="second"
+          class="c"
+          src="./assets/imgs/second.svg"
+        />
+      </div>
     </div>
   </main>
 </template>
@@ -144,65 +146,73 @@ export default {
 main {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  position: relative;
-
   background-color: #273746;
-  color: #273746;
-  border-radius: 5px;
-  &:hover {
-    box-shadow: 0px 20px 40px currentColor;
-  }
-  img#outer {
-    width: 95%;
-    position: absolute;
-    // opacity: 0.2;
-    z-index: 10;
-    transition: all 0.3s ease-in-out;
-  }
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   div.watch-con {
-    width: 65%;
-    height: 65%;
-    background-color: brown;
-    position: absolute;
-    border-radius: 50%;
-    transition: all 0.3s ease-in-out;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
 
-    img#bg {
+    background-color: #273746;
+    color: #273746;
+    border-radius: 5px;
+    &:hover {
+      box-shadow: 0px 20px 40px currentColor;
+    }
+    img#outer {
+      width: 95%;
       position: absolute;
-      width: 100%;
-      height: 100%;
+      // opacity: 0.2;
+      z-index: 10;
+      transition: all 0.3s ease-in-out;
     }
-    img#hour,
-    img#minute,
-    img#second,
-    img#t-c-pointer {
-      position: absolute;
-      transform-origin: center;
-    }
-    img#second {
-      width: 110%;
-      height: 110%;
-    }
-    img#minute {
-      width: 75%;
-      height: 75%;
-    }
-    img#hour {
-      width: 70%;
-      height: 70%;
-    }
-    img#t-c-pointer {
-      width: 25%;
-      height: 25%;
-      top: 27.5%;
-      left: 51%;
-    }
-  }
 
-  &:hover {
-    cursor: pointer;
+    div.watch-con {
+      width: 65%;
+      height: 65%;
+      background-color: brown;
+      position: absolute;
+      border-radius: 50%;
+      transition: all 0.3s ease-in-out;
+
+      img#bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      img#hour,
+      img#minute,
+      img#second,
+      img#t-c-pointer {
+        position: absolute;
+        transform-origin: center;
+      }
+      img#second {
+        width: 110%;
+        height: 110%;
+      }
+      img#minute {
+        width: 75%;
+        height: 75%;
+      }
+      img#hour {
+        width: 70%;
+        height: 70%;
+      }
+      img#t-c-pointer {
+        width: 25%;
+        height: 25%;
+        top: 27.5%;
+        left: 51%;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 </style>

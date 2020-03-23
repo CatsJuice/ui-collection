@@ -1,16 +1,46 @@
 <template>
-  <div class="home scroll-bar" :style="`
-    
-  `">
+  <div class="home scroll-bar" :style="`height: ${wrapBoxHeight}px`">
+    <div class="mask" v-if="curAni !== -1 && !!curAni"></div>
     <div
-      @click="itemClick(code)"
-      :class="['item', $store.state.currentActiveAnima === code ? 'active' : '']"
-      v-for="({name, code}, index) in list"
+      @click="itemClick(code, index)"
+      :class="['item', curAni === code ? 'active' : '']"
+      v-for="({name, code, x,y,z}, index) in list"
       :key="`${name}-${index}`"
+      :style="`
+        left:${curAni === code ? '50%' : x + 'px'};
+        top: ${curAni === code ? '50%' : y + 'px'};
+        position: ${curAni === code ? 'absolute' : 'absolute'};
+
+        ${curAni === code ? 'z-index:200;' : ''}
+        ${curAni === code ? 'border-radius: 20px;' : ''}
+        ${curAni === code ? 'overflow: hidden;' : ''}
+        ${curAni === code ? 'width: calc(100% - 60px);' : ''}
+        ${curAni === code ? 'height: calc(100% - 60px);' : ''}
+        ${curAni === code ? 'transform: translate(-50%, -50%);' : ''}
+        ${curAni === code ? 'margin-top: ' + scrollTop + 'px;' : ''}
+
+        ${z ? 'z-index: ' + z + ';' : ''}
+
+        transition: all 0.4s ease, 
+                    z-index none, 
+                    position 0s ease 0.4s, 
+                    margin-top none,
+      `"
     >
+      <div
+        class="back-btn"
+        @click.stop="itemClick(-1, -1)"
+        :style="`
+          opacity:${curAni === code ? 1 : 0};
+          z-index: 101;
+          left: ${curAni === code ? 0 : '-100px'};
+          ${curAni === code ? 'transition: all 0.3s ease-in-out 0.3s;' : 'transition: all 0.3s ease-in-out 0s;'}
+        `"
+      >
+        <img src="@/assets/back.svg" />
+      </div>
       <component :is="name" />
     </div>
-    <div v-for="(item, index) in t" :key="`grow-${index}`" class="grow"></div>
   </div>
 </template>
 
@@ -51,16 +81,19 @@ const promisedTpls = requireComponent.keys().reduce((result, fileName) => {
   };
 }, {});
 
+import layoutMixin from "./layout.mixin";
+
 export default {
   name: "home",
   data() {
     return {
-      t: [, , , , , , , , , , , , , , , ,],
       list: [],
       page: 0,
-      size: 20
+      size: 20,
+      maxZIndex: 100
     };
   },
+  mixins: [layoutMixin],
   mounted() {
     this.loadNextPage(this.page + 1);
   },
@@ -77,13 +110,30 @@ export default {
           name
         });
       }
+
+      this.layout();
     },
-    itemClick(code) {
+    itemClick(code, index) {
+      if (code !== -1) {
+        // 更新所有z-index
+        this.list.forEach((element, i) => {
+          const z = i === index ? this.maxZIndex : 0;
+          this.$set(this.list[i], "z", z);
+        });
+      }
       this.$store.commit("updateCurrentActiveAnimation", code);
     }
   },
   components: {
     ...promisedTpls
+  },
+  computed: {
+    curAni() {
+      return this.$store.state.currentActiveAnima;
+    },
+    scrollTop() {
+     return this.$store.state.scrollTop;
+    }
   }
 };
 </script>
@@ -93,15 +143,16 @@ export default {
 
 * {
   transition: all 0.3s ease-in-out;
+  user-select: none;
 }
 .home {
-  width: 80%;
+  width: 100%;
   margin: 0px auto;
-  padding: 50px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  // padding: 50px 20px;
+  // display: flex;
+  // justify-content: center;
+  // align-items: flex-start;
+  // flex-wrap: wrap;
   transition: all 0.3s ease-in-out;
 
   overflow-y: auto;
@@ -116,31 +167,41 @@ export default {
   background-color: #fff;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  margin: 10px;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  transition: all 0.4s ease-in-out;
 
   position: relative;
 
-  // overflow: hidden;
+  overflow: hidden;
 
   &:hover {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   }
 
-  &.active {
-    &::before {
-      content: "";
-      position: absolute;
-      z-index: 0;
-      width: ~"calc(200px + 10px)";
-      height: ~"calc(200px + 10px)";
-      border: 2px solid #5D6D7E;
-      border-radius: 5px;
+  & .back-btn {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 1px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 28px;
+    }
+
+    &:hover {
+      width: 60px;
     }
   }
 }
@@ -148,5 +209,18 @@ export default {
   width: 200px;
   height: 1px;
   margin: 10px;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(255,255,255,.5);
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  transition: all 1s ease-in-out;
+  backdrop-filter: blur(8px);
 }
 </style>
