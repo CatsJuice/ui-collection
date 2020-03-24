@@ -1,5 +1,5 @@
 <template>
-  <main class="animation-root">
+  <main :class="['animation-root', active ? 'active' : '']">
     <!-- 屏幕的大容器 -->
     <!-- <div class="screen-container"> -->
 
@@ -30,6 +30,7 @@
 export default {
   data() {
     return {
+      active: false,
       list: [
         { type: "r", w: [90, 70, 50] },
         { type: "l", w: [80, 50] },
@@ -39,6 +40,20 @@ export default {
         { type: "l", w: [80, 50] }
       ]
     };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      if (!this.interval) {
+        this.interval = setInterval(() => {
+          setTimeout(() => {
+            this.active = true;
+            setTimeout(() => {
+              this.active = false
+            }, 1000)
+          }, 1500);
+        }, 2500);
+      }
+    });
   }
 };
 </script>
@@ -65,9 +80,8 @@ main.animation-root {
   background-color: @bg;
   color: @bg;
 
-
   .screen {
-      transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     position: absolute;
     width: @w;
     height: @h;
@@ -79,25 +93,25 @@ main.animation-root {
       rotateZ(-43deg);
     opacity: 1;
     &:nth-child(2) {
-        transform: translateY(18px) skew(16deg) rotateX(53deg) rotateY(-2deg)
-          rotateZ(-43deg);
-        opacity: 0.3;
-      }
-      &:nth-child(3) {
-        transform: translateY(16px) skew(16deg) rotateX(53deg) rotateY(-2deg)
-          rotateZ(-43deg);
-        opacity: 0.6;
-      }
-      &:nth-child(4) {
-        transform: translateY(14px) skew(16deg) rotateX(53deg) rotateY(-2deg)
-          rotateZ(-43deg);
-        opacity: 0.8;
-      }
-      &:nth-child(5) {
-        transform: translateY(11px) skew(16deg) rotateX(53deg) rotateY(-2deg)
-          rotateZ(-43deg);
-        opacity: 1;
-      }
+      transform: translateY(18px) skew(16deg) rotateX(53deg) rotateY(-2deg)
+        rotateZ(-43deg);
+      opacity: 0.3;
+    }
+    &:nth-child(3) {
+      transform: translateY(16px) skew(16deg) rotateX(53deg) rotateY(-2deg)
+        rotateZ(-43deg);
+      opacity: 0.6;
+    }
+    &:nth-child(4) {
+      transform: translateY(14px) skew(16deg) rotateX(53deg) rotateY(-2deg)
+        rotateZ(-43deg);
+      opacity: 0.8;
+    }
+    &:nth-child(5) {
+      transform: translateY(11px) skew(16deg) rotateX(53deg) rotateY(-2deg)
+        rotateZ(-43deg);
+      opacity: 1;
+    }
 
     .row {
       margin: 2px 0;
@@ -179,7 +193,8 @@ main.animation-root {
       rotateZ(-43deg);
   }
 
-  &:hover {
+  &:hover,
+  &.active {
     .screen {
       &:nth-child(2) {
         transform: translateY(15px) skew(16deg) rotateX(53deg) rotateY(-2deg)

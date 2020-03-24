@@ -81,5 +81,12 @@ module.exports = [
         name: 'tpl-0012',
         tag: [],
         description: "列表界面过渡动画(斜切视角+展开动画)",
-    }
+    },
+    {
+        code: '0013',
+        category: '',
+        name: 'tpl-0013',
+        tag: [],
+        description: "switch-btn 动效， 灵感来源： https://dribbble.com/shots/10805627-Neumorphic-Tab",
+    },
 ]
