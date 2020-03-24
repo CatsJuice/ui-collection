@@ -45,14 +45,14 @@ export default {
 
 
 <style lang="less" scoped>
-@bg: #E5E7E9;
+@bg: linear-gradient(45deg, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
 @h: 44px;
 @padding: 5px;
 @br: 10px;
 
 @duration: 0.5s;
 main.animation-root {
-  background-color: @bg;
+  background: @bg;
 
   div.wrap {
     width: 160px;

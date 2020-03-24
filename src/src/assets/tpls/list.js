@@ -89,4 +89,11 @@ module.exports = [
         tag: [],
         description: "switch-btn 动效， 灵感来源： https://dribbble.com/shots/10805627-Neumorphic-Tab",
     },
+    {
+        code: '0014',
+        category: '',
+        name: 'tpl-0014',
+        tag: [],
+        description: "mobile 动效， 来源 https://dribbble.com/shots/10812321-Camping-travel-navigation",
+    },
 ]

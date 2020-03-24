@@ -20,32 +20,31 @@ export default {
   },
   mounted() {
     // this.$nextTick(() => {
-      if (!this.interval) {
-        this.interval = setInterval(() => {
-          this.active = true;
-          setTimeout(() => {
-            this.active = false;
-          }, 1500);
-        }, 3000);
-      }
+    if (!this.interval) {
+      this.interval = setInterval(() => {
+        this.active = true;
+        setTimeout(() => {
+          this.active = false;
+        }, 1500);
+      }, 3000);
+    }
     // });
   }
 };
 </script>
 
 <style lang="less" scoped>
-@bg: #EC7063;
+@bg: #c91f37;
 @h: 50px;
 @m: 5px;
 @bw: 8px;
 
 @off: #212f3d;
-@on: #F1C40F;
+@on: #f1c40f;
 @duration: 0.4s;
 @duration2: 0.3s;
 main.animation-root {
-  background-color: @bg;
-  color: @bg;
+  background: @bg;
 
   div.small-container {
     width: 200px;
@@ -61,7 +60,7 @@ main.animation-root {
       transition: all 0.3s ease-in-out;
       height: @h;
       border-radius: ~"calc(@{h} / 2)";
-    //   background-color: @off;
+      //   background-color: @off;
       box-shadow: 0px 0px 0px rgba(255, 255, 255, 0.6);
       overflow: hidden;
       position: relative;
@@ -103,7 +102,8 @@ main.animation-root {
       &.active {
         .handler {
           width: 0;
-        transition: all @duration ease-in-out, border-radius 0.2s ease @duration2;
+          transition: all @duration ease-in-out,
+            border-radius 0.2s ease @duration2;
           //   height: ~"calc((@{h} - 2 * @{m} - 2*@{bw} ) - 10px)";
           //   top: ~"calc(@{m} + 5px)";
           background-color: #fff;
