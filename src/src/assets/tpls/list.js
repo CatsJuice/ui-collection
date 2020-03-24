@@ -66,7 +66,7 @@ module.exports = [
         category: '',
         name: 'tpl-0010',
         tag: [],
-        description: "列表界面过渡动画",
+        description: "列表界面过渡动画（基础）",
     },
     {
         code: '0011',
@@ -75,4 +75,11 @@ module.exports = [
         tag: [],
         description: "Apple Switch Buttn Effect",
     },
+    {
+        code: '0012',
+        category: '',
+        name: 'tpl-0012',
+        tag: [],
+        description: "列表界面过渡动画(斜切视角+展开动画)",
+    }
 ]

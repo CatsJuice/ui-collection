@@ -25,8 +25,8 @@ export default {
           this.active = true;
           setTimeout(() => {
             this.active = false;
-          }, 1000);
-        }, 2000);
+          }, 1500);
+        }, 3000);
       }
     // });
   }
@@ -41,6 +41,8 @@ export default {
 
 @off: #212f3d;
 @on: #F1C40F;
+@duration: 0.4s;
+@duration2: 0.3s;
 main.animation-root {
   background-color: @bg;
   color: @bg;
@@ -65,7 +67,7 @@ main.animation-root {
       position: relative;
 
       .handler {
-        transition: all 0.3s ease-in-out, border-radius 0.5s ease;
+        transition: all @duration ease-in-out, border-radius 0.5s ease;
         width: ~"calc(@{h} - 2 * @{m} - 2*@{bw})";
         height: ~"calc(@{h} - 2 * @{m} - 2*@{bw})";
         position: absolute;
@@ -83,7 +85,7 @@ main.animation-root {
         height: 130px;
         border-radius: 50%;
         position: absolute;
-        transition: all 0.3s ease-in-out;
+        transition: all @duration ease-in-out;
         z-index: 1;
       }
       .off {
@@ -101,8 +103,10 @@ main.animation-root {
       &.active {
         .handler {
           width: 0;
+        transition: all @duration ease-in-out, border-radius 0.2s ease @duration2;
           //   height: ~"calc((@{h} - 2 * @{m} - 2*@{bw} ) - 10px)";
           //   top: ~"calc(@{m} + 5px)";
+          background-color: #fff;
           border-radius: ~"calc(@{bw})";
           left: ~"calc(130px - @{h}* 3/4 - 10px)";
         }
