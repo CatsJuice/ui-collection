@@ -103,4 +103,11 @@ module.exports = [
         tag: [],
         description: "loading 动画, 来源：https://dribbble.com/shots/7711569-Loaders-Vol3-Choice",
     },
+    {
+        code: '0016',
+        category: '',
+        name: 'tpl-0016',
+        tag: [],
+        description: "loading 动画, 来源：https://dribbble.com/shots/7711569-Loaders-Vol3-Choice",
+    },
 ]

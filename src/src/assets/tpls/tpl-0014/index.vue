@@ -34,6 +34,16 @@
             </div>
             <div class="r"></div>
           </div>
+
+          <!--  -->
+          <!--  -->
+          <!-- 区域 B -->
+          <div class="b">
+            <header></header>
+            <div class="galary-list">
+              <div class="galary" v-for="i in 5" :key="i"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -49,6 +59,7 @@ export default {};
 @bg: #5d6d7e;
 @topColor: #c93756;
 @borderRadius: 10px;
+@duration: 3s;
 main.animation-root {
   background: @bg;
 
@@ -72,6 +83,8 @@ main.animation-root {
       box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
       bottom: 0;
       overflow: hidden;
+
+      animation: cardAnima @duration ease 0s infinite;
 
       .a {
         box-sizing: border-box;
@@ -138,7 +151,7 @@ main.animation-root {
             background-color: #85929e;
             border-radius: 5px;
 
-            animation: scrollX 3s ease 0s infinite;
+            animation: scrollX @duration ease 0s infinite;
 
             &:hover {
               transform: translateX(-55px);
@@ -201,7 +214,19 @@ main.animation-root {
     }
   }
 }
-
+@keyframes cardAnima {
+  0% {
+  }
+  20% {
+    height: 100%;
+  }
+  50% {
+    height: 100%;
+  }
+  70% {
+      height: 70%;
+  }
+}
 @keyframes scrollX {
   0% {
     margin-left: ~"calc(@{borderRadius} / 2)";
