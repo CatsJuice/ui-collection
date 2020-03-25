@@ -178,7 +178,7 @@ export default {
 .item {
   width: 200px;
   height: 200px;
-  background-color: #fff;
+  // background-color: #fff;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 

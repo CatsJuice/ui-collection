@@ -96,4 +96,11 @@ module.exports = [
         tag: [],
         description: "mobile 动效， 来源 https://dribbble.com/shots/10812321-Camping-travel-navigation",
     },
+    {
+        code: '0015',
+        category: '',
+        name: 'tpl-0015',
+        tag: [],
+        description: "loading 动画, 来源：https://dribbble.com/shots/7711569-Loaders-Vol3-Choice",
+    },
 ]

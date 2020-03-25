@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="scroll-bar">
     <router-view />
     <!-- <operator /> -->
   </div>
@@ -22,12 +22,14 @@ export default {
         //IE浏览器
         scroll_top = document.body.scrollTop;
       }
-      this.$store.commit("updateScrollTop", scroll_top)
+      this.$store.commit("updateScrollTop", scroll_top);
     });
   }
 };
 </script>
 <style lang="less">
+@import "~@/assets/style/public.less";
+@dark-bg-color: rgb(59,59,59);
 * {
   margin: 0;
   padding: 0;
@@ -39,6 +41,10 @@ body,
   height: 100vh;
   background-color: #f6f6f6;
   display: flex;
+  @media (prefers-color-scheme: dark) {
+    background-color: @dark-bg-color;
+  }
+  .scrollbar()
   // @media screen and (min-width: 1920px){
 
   // }
