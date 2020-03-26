@@ -114,7 +114,7 @@ main.animation-root {
       box-shadow: 0px 5px 5px currentColor, 0px -5px 5px rgba(0,0,0,.2);
       position: absolute;
       overflow: hidden;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.4s cubic-bezier(.65,-0.16,.56,1.71);
 
       span {
         display: block;

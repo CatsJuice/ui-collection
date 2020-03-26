@@ -7,7 +7,7 @@
       @mouseout="itemMouseout(code)"
       @click="itemClick(code, index)"
       :class="['item', curAni === code ? 'active' : '']"
-      v-for="({name, code, x,y,z}, index) in list"
+      v-for="({name, code,description,  x,y,z}, index) in list"
       :key="`${name}-${index}`"
       :style="`
         left:${curAni === code ? '50%' : x + 'px'};
@@ -31,6 +31,10 @@
       `"
     >
       <component :is="name" />
+      <div :class="['info-container', curAni === code ? 'show' : 'hide']">
+        <h3>{{ code }}</h3>
+        <p>{{ description }}</p>
+      </div>
       <div
         class="back-btn"
         @click.stop="itemClick(-1, -1)"
@@ -106,11 +110,12 @@ export default {
 
       const upLimit = Math.min(size, tplList.length - page * size);
       for (let i = page * size; i < upLimit; i++) {
-        const { code, name } = tplList[i];
+        const { code, name,description } = tplList[i];
         this.list.push({
           // name: `tpl-${code}`,
           code,
-          name
+          name,
+          description,
         });
       }
 
@@ -216,6 +221,34 @@ export default {
 
     &:hover {
       width: 60px;
+    }
+  }
+
+  .info-container {
+    max-width: 300px;
+    min-height: 60px;
+    min-width: 100px;
+    padding: 20px;
+    position: absolute;
+    bottom: 20px;
+    background-color: #eee;
+    border-radius: 15px;
+    // text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset -5px -5px 5px rgba(255,255,255, .8),
+                inset 5px 5px 10px rgba(0,0,0,.3);
+    user-select: text;
+    &.hide {
+      transform: translateY(~"calc(100% + 50px)");
+    }
+    h3 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 0.9rem;
     }
   }
 }
