@@ -117,4 +117,11 @@ module.exports = [
         tag: [],
         description: "loading 动画, 灵感来源：https://codepen.io/golle404/pen/JXmzaE",
     },
+    {
+        code: '0018',
+        category: '',
+        name: 'tpl-0018',
+        tag: [],
+        description: "日夜交替 loading 动画, 灵感来源：https://codepen.io/ccromjongh/pen/yemQEQ",
+    },
 ]
