@@ -66,9 +66,8 @@ main.animation-root {
       position: relative;
 
       .handler {
-        transition: all 0.3s ease-in-out, 
-                    border-radius @duration cubic-bezier(.42,-0.58,.55,1.56),
-                    width 0.5s cubic-bezier(.65,-0.16,.56,1.71);
+        transition: all 0.3s ease-in-out,
+          width 0.5s cubic-bezier(0.65, -0.5, 0.56, 2);
         width: ~"calc(@{h} - 2 * @{m} - 2*@{bw})";
         height: ~"calc(@{h} - 2 * @{m} - 2*@{bw})";
         position: absolute;
@@ -104,8 +103,9 @@ main.animation-root {
       &.active {
         .handler {
           width: 0;
-          transition: all 0.4s cubic-bezier(.65,-0.16,.56,1.71),
-            border-radius 0.5s cubic-bezier(.65,-0.16,.56,1.71) @duration2;
+          transition: all @duration ease,
+            background-color 0.3 cubic-bezier(0.65, -0.2, 0.56, 1.15) 0.1s,
+            left @duration cubic-bezier(0.65, -0.2, 0.56, 1.15);
           //   height: ~"calc((@{h} - 2 * @{m} - 2*@{bw} ) - 10px)";
           //   top: ~"calc(@{m} + 5px)";
           background-color: #fff;

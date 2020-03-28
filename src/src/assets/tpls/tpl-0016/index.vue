@@ -31,7 +31,7 @@
 
         <span class="e" :style="{color: textColor || '#fff'}">VISA</span>
 
-        <span class="catsjuice" :style="{color: textColor || '#fff'}">&copyright;CatsJuice</span>
+        <span class="catsjuice" :style="{color: textColor || '#fff'}">&copy;CatsJuice</span>
       </div>
     </div>
   </main>

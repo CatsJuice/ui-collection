@@ -124,4 +124,11 @@ module.exports = [
         tag: [],
         description: "日夜交替 loading 动画, 灵感来源：https://codepen.io/ccromjongh/pen/yemQEQ",
     },
+    {
+        code: '0019',
+        category: '',
+        name: 'tpl-0019',
+        tag: [],
+        description: "果汁动画",
+    },
 ]
