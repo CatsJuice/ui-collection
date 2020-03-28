@@ -23,6 +23,10 @@ export default {
         scroll_top = document.body.scrollTop;
       }
       this.$store.commit("updateScrollTop", scroll_top);
+
+      // if (document.body.scrollHeight - scroll_top === document.body.clientHeight) {
+      //   console.log("滚动到底部")
+      // }
     });
   }
 };

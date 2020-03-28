@@ -1,15 +1,16 @@
 <template>
-  <div class="home scroll-bar" :style="`height: ${wrapBoxHeight}px`">
-    <div class="mask" v-if="curAni !== -1 && !!curAni"></div>
-    <div
-      :ref="`item${code}`"
-      @mouseover="itemMouseover(code)"
-      @mouseout="itemMouseout(code)"
-      @click="itemClick(code, index)"
-      :class="['item', curAni === code ? 'active' : '']"
-      v-for="({name, code,description,  x,y,z}, index) in list"
-      :key="`${name}-${index}`"
-      :style="`
+  <main style="width:100%;">
+    <div class="home scroll-bar" :style="`height: ${wrapBoxHeight}px`">
+      <div class="mask" v-if="curAni !== -1 && !!curAni"></div>
+      <div
+        :ref="`item${code}`"
+        @mouseover="itemMouseover(code)"
+        @mouseout="itemMouseout(code)"
+        @click="itemClick(code, index)"
+        :class="['item', curAni === code ? 'active' : '']"
+        v-for="({name, code,description,  x,y,z}, index) in list"
+        :key="`${name}-${index}`"
+        :style="`
         left:${curAni === code ? '50%' : x + 'px'};
         top: ${curAni === code ? '50%' : y + 'px'};
         position: ${curAni === code ? 'absolute' : 'absolute'};
@@ -29,26 +30,44 @@
                     position 0s ease 0.4s, 
                     margin-top none,
       `"
-    >
-      <component :is="name" />
-      <div :class="['info-container', curAni === code ? 'show' : 'hide']">
-        <h3>{{ code }}</h3>
-        <p>{{ description }}</p>
-      </div>
-      <div
-        class="back-btn"
-        @click.stop="itemClick(-1, -1)"
-        :style="`
+      >
+        <component :is="name" />
+        <div :class="['info-container', curAni === code ? 'show' : 'hide']">
+          <h3>{{ code }}</h3>
+          <p>{{ description }}</p>
+        </div>
+        <div
+          class="back-btn"
+          @click.stop="itemClick(-1, -1)"
+          :style="`
           opacity:${curAni === code ? 1 : 0};
           z-index: 101;
           left: ${curAni === code ? 0 : '-100px'};
           ${curAni === code ? 'transition: all 0.3s ease-in-out 0.3s;' : 'transition: all 0.3s ease-in-out 0s;'}
         `"
-      >
-        <img src="@/assets/back.svg" />
+        >
+          <img src="@/assets/back.svg" />
+        </div>
       </div>
     </div>
-  </div>
+    <div class="load-btn" @click="loadNextPage()">
+      <span>{{ loadAll ? '已加载全部' : '加载更多' }}</span>
+      <svg
+        t="1585406512582"
+        class="icon"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        p-id="2254"
+      >
+        <path
+          d="M138.2 512.1c0-206.1 167.1-373.2 373.2-373.2S884.6 306 884.6 512.1 717.5 885.3 511.4 885.3c-206.1 0.1-373.2-167-373.2-373.2zM511.5 64.3c-247.4 0-447.9 200.5-447.9 447.9C63.6 759.5 264.1 960 511.5 960c247.4 0 447.9-200.5 447.9-447.9-0.1-247.3-200.6-447.8-447.9-447.8z m37.3 298.5c0-20.6-16.7-37.3-37.3-37.3s-37.3 16.7-37.3 37.3v208.5L425.9 523c-14.6-14.6-38.2-14.6-52.8 0-14.6 14.6-14.6 38.2 0 52.8l112 112c7 7 16.5 10.9 26.4 10.9s19.4-3.9 26.4-10.9l112-112c14.6-14.6 14.6-38.2 0-52.8-14.6-14.6-38.2-14.6-52.8 0l-48.3 48.3V362.8z"
+          p-id="2255"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -97,28 +116,37 @@ export default {
       list: [],
       page: 0,
       size: 20,
-      maxZIndex: 100
+      maxZIndex: 100,
+      loadAll: false
     };
   },
   mixins: [layoutMixin],
   mounted() {
-    this.loadNextPage(this.page + 1);
+    this.loadNextPage();
   },
   methods: {
-    loadNextPage(newPage) {
+    loadNextPage() {
       const { page, size } = this;
 
       const upLimit = Math.min(size, tplList.length - page * size);
-      for (let i = page * size; i < upLimit; i++) {
-        const { code, name,description } = tplList[i];
+      if (upLimit <= 0) {
+        this.loadAll = true;
+        return;
+      } else if (upLimit < size) {
+        this.loadAll = true;
+      }
+
+      const base = page * size;
+      for (let i = 0; i < upLimit; i++) {
+        const { code, name, description } = tplList[i + base];
         this.list.push({
           // name: `tpl-${code}`,
           code,
           name,
-          description,
+          description
         });
       }
-
+      this.page++;
       this.layout();
     },
     itemClick(code, index) {
@@ -140,7 +168,9 @@ export default {
       this.$refs[`item${code}`][0].style.boxShadow = `0px 20px 40px ${color}`;
     },
     itemMouseout(code) {
-      this.$refs[`item${code}`][0].style.boxShadow = `0px 5px 10px rgba(0,0,0,.2)`;
+      this.$refs[
+        `item${code}`
+      ][0].style.boxShadow = `0px 5px 10px rgba(0,0,0,.2)`;
     }
   },
   components: {
@@ -173,6 +203,7 @@ export default {
   // align-items: flex-start;
   // flex-wrap: wrap;
   transition: all 0.3s ease-in-out;
+  // position: relative;
 
   overflow-y: auto;
 
@@ -238,9 +269,13 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: inset -5px -5px 5px rgba(255,255,255, .8),
-                inset 5px 5px 10px rgba(0,0,0,.3);
+    box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.2),
+      inset 4px 4px 4px rgba(0, 0, 0, 0.2);
     user-select: text;
+    opacity: 0;
+    &:hover {
+      opacity: 1;
+    }
     &.hide {
       transform: translateY(~"calc(100% + 50px)");
     }
@@ -269,5 +304,61 @@ export default {
 
   transition: all 1s ease-in-out;
   backdrop-filter: blur(8px);
+}
+
+.load-btn {
+  // position: absolute;
+  bottom: 50px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: -50px;
+  font-size: 0.8rem;
+  width: 200px;
+  height: 44px;
+  line-height: 44px;
+  cursor: pointer;
+  border-radius: 22px;
+  background-color: transparent;
+  font-weight: bold;
+  position: relative;
+
+  .icon {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    width: 20px;
+    height: 30px;
+    // color: #555555;
+    transition: all 0.022s ease-in-out;
+  }
+  transition: all 0.3s ease-in-out;
+  box-shadow: -2px -2px 7px rgba(255, 255, 255, 0.9),
+    2px 2px 4px rgba(0, 0, 0, 0.2), inset -2px -2px 7px rgba(255, 255, 255, 0),
+    inset 2px 2px 4px rgba(0, 0, 0, 0);
+  color: #555555;
+
+  &:hover {
+    width: 250px;
+    box-shadow: -2px -2px 7px rgba(255, 255, 255, 0),
+      2px 2px 4px rgba(0, 0, 0, 0), inset -2px -2px 7px rgba(255, 255, 255, 0.9),
+      inset 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: #222;
+    letter-spacing: 5px;
+  }
+  @media (prefers-color-scheme: dark) {
+    box-shadow: -2px -2px 4px rgba(255, 255, 255, 0.08),
+      2px 2px 5px rgba(0, 0, 0, 0.3), inset -3px -3px 6px rgba(255, 255, 255, 0),
+      inset 4px 4px 6px rgba(0, 0, 0, 0);
+    color: #ddd;
+
+    &:hover {
+      width: 250px;
+      box-shadow: -3px -3px 6px rgba(255, 255, 255, 0),
+        4px 4px 6px rgba(0, 0, 0, 0),
+        inset -3px -3px 6px rgba(255, 255, 255, 0.15),
+        inset 4px 4px 6px rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+  }
 }
 </style>

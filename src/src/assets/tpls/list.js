@@ -145,4 +145,11 @@ module.exports = [
         tag: [],
         description: "拟态数字时钟",
     },
+    // {
+    //     code: '0022',
+    //     category: '',
+    //     name: 'tpl-0022',
+    //     tag: [],
+    //     description: "波纹效果",
+    // },
 ]

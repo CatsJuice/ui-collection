@@ -33,10 +33,10 @@
       </div>
 
       <!-- 切换颜色按钮 -->
-      <span class="switch l" @click="switchColor(-1)">
+      <span class="switch l" @click.stop="switchColor(-1)">
         <img src="./assets/imgs/arrow_down.png" />
       </span>
-      <span class="switch r" @click="switchColor(1)">
+      <span class="switch r" @click.stop="switchColor(1)">
         <img src="./assets/imgs/arrow_down.png" />
       </span>
     </div>
