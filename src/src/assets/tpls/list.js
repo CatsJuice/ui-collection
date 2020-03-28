@@ -131,4 +131,11 @@ module.exports = [
         tag: [],
         description: "果汁动画",
     },
+    {
+        code: '0020',
+        category: '',
+        name: 'tpl-0020',
+        tag: [],
+        description: "tag 特效",
+    },
 ]
