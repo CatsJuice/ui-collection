@@ -63,13 +63,13 @@ main.animation-root {
     border-radius: 50%;
   }
   30% {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
   }
   35% {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     border-radius: 0;
   }
   37% {
@@ -114,13 +114,13 @@ main.animation-root {
     border-radius: 50%;
   }
   33% {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
   }
   35% {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     border-radius: 0;
   }
   37% {

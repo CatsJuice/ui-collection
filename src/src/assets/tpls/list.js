@@ -138,4 +138,11 @@ module.exports = [
         tag: [],
         description: "tag 特效",
     },
+    {
+        code: '0021',
+        category: '',
+        name: 'tpl-0021',
+        tag: [],
+        description: "拟态数字时钟",
+    },
 ]
