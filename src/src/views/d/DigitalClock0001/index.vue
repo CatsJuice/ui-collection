@@ -1,5 +1,5 @@
 <template>
-  <main class="d-root">
+  <main class="d-root" :style="`background:${themes[theme].bg};`">
     <div class="display-area">
       <div v-for="c in clock" :key="c.class" :class="c.class">
         <div
@@ -9,16 +9,33 @@
           :style="`
                 height: ${10 * 2 + (c.keys[i-1] === 'h1' ? 3 : 10) * 80 + 'px'};
                 transform: translateY(${ time[c.keys[i-1]] * -80 + 'px'});
+                ${themes[theme].barShadow ? 'box-shadow:' + themes[theme].barShadow + ';' : ''}
             `"
         >
           <!-- <div class="card" :style="`top: ${10 + time[c.keys[i-1]] * 80 + 'px'}`"></div> -->
           <div
             :class="['num', time[c.keys[i-1]] === j-1 ? 'active' : '']"
             v-for="j in c.keys[i-1] === 'h1' ? 3 : 10"
+            :style="`
+              ${time[c.keys[i-1]] === j-1 ? 
+                'color: ' + themes[theme].primaryText : 
+                'color: ' + themes[theme].textNormal 
+              };
+
+              ${time[c.keys[i-1]] === j-1 ? 
+                'text-shadow: ' + themes[theme].primaryTextShadow : 
+                ''
+              };
+
+              ${time[c.keys[i-1]] !== j-1 ?
+                'text-shadow:' + themes[theme].textNormalShadow :
+                ''
+              };
+            `"
             :key="j"
           >{{ j - 1 }}</div>
 
-            <!-- 重置按钮 -->
+          <!-- 重置按钮 -->
           <div @click="reset" class="reset-ghost" v-if="c.keys[i-1] === 'h1'">
             <svg
               t="1585466044257"
@@ -37,24 +54,61 @@
               />
             </svg>
           </div>
+
+          <!-- 切换主题 -->
+          <div @click="switchTheme" class="theme-ghost" v-if="c.keys[i-1] === 'h1'">
+            <svg
+              t="1585482572258"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="1396"
+              width="30px"
+              height="30px"
+            >
+              <path
+                class="icon"
+                d="M277.333333 554.666667a64 64 0 1 1 0-128 64 64 0 0 1 0 128z m469.333334 0a64 64 0 1 1 0-128 64 64 0 0 1 0 128z m-128-170.666667a64 64 0 1 1 0-128 64 64 0 0 1 0 128z m-213.333334 0a64 64 0 1 1 0-128 64 64 0 0 1 0 128zM512 943.744C276.352 943.744 85.333333 747.648 85.333333 512S276.352 85.333333 512 85.333333s426.666667 191.018667 426.666667 426.666667c0 124.970667-113.28 289.28-320 226.389333-69.205333-21.034667 92.586667 205.354667-106.666667 205.354667z m0-85.333333a119.466667 119.466667 0 0 0 18.688-1.28c-0.170667-2.005333-0.341333-4.821333-0.682667-8.448-0.853333-8.533333-2.517333-18.133333-5.546666-32.554667l-2.986667-14.037333c-1.237333-5.973333-2.133333-10.538667-2.986667-15.061334a178.688 178.688 0 0 1-3.626666-38.613333c1.877333-67.2 60.928-112.256 128.64-91.690667C765.354667 693.802667 853.333333 614.485333 853.333333 512a341.333333 341.333333 0 1 0-682.666666 0c0 189.781333 154.069333 346.410667 341.333333 346.410667z"
+                p-id="1397"
+              />
+            </svg>
+          </div>
         </div>
 
-        <div v-for="i in 2" :key="`card${i}`" class="active-bg-card" :style="`
+      <!-- 激活的时间数字背景 -->
+        <div
+          v-for="i in 2"
+          :key="`card${i}`"
+          class="active-bg-card"
+          :style="`
             left: ${(i - 1) * (80 + 16) + 16}px;
             top: 18px;
-        `"></div>
+            background: ${themes[theme].primary};
+            box-shadow: ${themes[theme].primaryShadow};
+        `"
+        ></div>
       </div>
     </div>
   </main>
 </template>
 
 <script>
+import themes from "./themes";
+
 export default {
   mounted() {
+    const storedTheme = window.localStorage.getItem("digitalClock0001Theme");
+    if (storedTheme) {
+      themes.forEach(({ id }, index) => {
+        if (id === storedTheme) this.theme = index;
+      });
+    }
     this.start();
   },
   data() {
     return {
+      theme: 0,
       clock: [
         {
           class: "hour",
@@ -88,8 +142,9 @@ export default {
         m2: 0,
 
         s1: 0,
-        s2: 0,
-      }
+        s2: 0
+      },
+      themes
     };
   },
   methods: {
@@ -133,11 +188,26 @@ export default {
         m2: 0,
 
         s1: 0,
-        s2: 0,
+        s2: 0
       };
       setTimeout(() => {
         this.start();
       }, 1300);
+    },
+
+    /**
+     * 切换主题
+     * */
+    switchTheme() {
+      if (this.theme === this.themes.length - 1) {
+        this.theme = 0;
+      } else {
+        this.theme++;
+      }
+      window.localStorage.setItem(
+        "digitalClock0001Theme",
+        themes[this.theme].id
+      );
     }
   }
 };
@@ -197,18 +267,16 @@ main.d-root {
       transform: translateX(65%);
     }
 
+    // 被激活的时间数字背景
     .active-bg-card {
-        width: 64px;
-        height: 80px;
-        background-color: #222f3e;
-        // background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
-        background-blend-mode: multiply;
-        position: absolute;
-        z-index: -1;
-        border-radius: 10px;
-        box-shadow: inset -3px -3px 4px rgba(255, 255, 255, .25),
-                    inset 3px 3px 16px rgba(0, 0, 0, 0.2),
-                    ;
+      width: 64px;
+      height: 80px;
+      background-color: #222f3e;
+      position: absolute;
+      z-index: -1;
+      border-radius: 10px;
+      box-shadow: inset -3px -3px 4px rgba(255, 255, 255, 0.25),
+        inset 3px 3px 16px rgba(0, 0, 0, 0.2);
     }
 
     .bar {
@@ -260,14 +328,15 @@ main.d-root {
           font-weight: 500;
           font-size: 3rem;
           text-shadow: -1px -1px 5px rgba(0, 0, 0, 0.2),
-                        1px 1px 5px rgba(0, 0, 0, 0.2);
+            1px 1px 5px rgba(0, 0, 0, 0.2);
           //   background-color: #212f3d;
           //   box-shadow: -4px -4px 5px rgba(255, 255, 255, 0.9),
           //     4px 4px 5px rgba(0, 0, 0, 0.4);
         }
       }
 
-      .reset-ghost {
+      .reset-ghost,
+      .theme-ghost {
         width: 40px;
         height: 40px;
         position: absolute;
@@ -290,6 +359,18 @@ main.d-root {
           box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.2),
             inset -2px -2px 2px rgba(255, 255, 255, 1);
           .refresh-btn {
+            fill: #d6dbdf;
+          }
+        }
+      }
+      .theme-ghost {
+        bottom: -150px;
+
+        .icon {
+          fill: transparent;
+        }
+        &:hover {
+          .icon {
             fill: #d6dbdf;
           }
         }
