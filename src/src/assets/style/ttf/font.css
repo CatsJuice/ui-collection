@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'MYFONT';
+    src: url('FiraCode-Light.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FiraCode-Bold';
+    src: url('FiraCode-Bold.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'ubuntu-medium';
+    src: url('ubuntu-medium-webfont.ttf');
+}
