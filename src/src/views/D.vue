@@ -46,9 +46,12 @@ export default {
     },
     mounted() {
         const id = this.$route.params.id;
+
         const components = Object.keys(promisedTpls)
         if (components.indexOf(id) < 0) {
             this.id = components[0]
+        } else {
+            this.id = id;
         }
     },
 

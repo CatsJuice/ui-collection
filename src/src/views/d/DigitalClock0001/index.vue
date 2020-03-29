@@ -1,5 +1,5 @@
 <template>
-  <main class="animation-root">
+  <main class="d-root">
     <div class="display-area">
       <div v-for="c in clock" :key="c.class" :class="c.class">
         <div
@@ -11,13 +11,14 @@
                 transform: translateY(${ time[c.keys[i-1]] * -80 + 'px'});
             `"
         >
-          <div class="card" :style="`top: ${10 + time[c.keys[i-1]] * 80 + 'px'}`"></div>
+          <!-- <div class="card" :style="`top: ${10 + time[c.keys[i-1]] * 80 + 'px'}`"></div> -->
           <div
             :class="['num', time[c.keys[i-1]] === j-1 ? 'active' : '']"
             v-for="j in c.keys[i-1] === 'h1' ? 3 : 10"
             :key="j"
           >{{ j - 1 }}</div>
 
+            <!-- 重置按钮 -->
           <div @click="reset" class="reset-ghost" v-if="c.keys[i-1] === 'h1'">
             <svg
               t="1585466044257"
@@ -37,6 +38,11 @@
             </svg>
           </div>
         </div>
+
+        <div v-for="i in 2" :key="`card${i}`" class="active-bg-card" :style="`
+            left: ${(i - 1) * (80 + 16) + 16}px;
+            top: 18px;
+        `"></div>
       </div>
     </div>
   </main>
@@ -64,6 +70,17 @@ export default {
         }
       ],
       time: {
+        // y1: 0,
+        // y2: 0,
+        // y3: 0,
+        // y4: 0,
+
+        // m1: 0,
+        // m2: 0,
+
+        // d1: 0,
+        // d2: 0,
+
         h1: 0,
         h2: 0,
 
@@ -71,7 +88,7 @@ export default {
         m2: 0,
 
         s1: 0,
-        s2: 0
+        s2: 0,
       }
     };
   },
@@ -83,13 +100,6 @@ export default {
           const hour = time.getHours();
           const minute = time.getMinutes();
           const second = time.getSeconds();
-
-          //   this.h1 = Math.floor(hour / 10);
-          //   this.h2 = hour % 10;
-          //   this.m1 = Math.floor(minute / 10);
-          //   this.m2 = minute % 10;
-          //   this.s1 = Math.floor(second / 10);
-          //   this.s2 = second % 10;
 
           this.$set(this.time, "h1", Math.floor(hour / 10));
           this.$set(this.time, "h2", hour % 10);
@@ -105,6 +115,17 @@ export default {
       clearInterval(this.interval);
       this.interval = undefined;
       this.time = {
+        // y1: 0,
+        // y2: 0,
+        // y3: 0,
+        // y4: 0,
+
+        // m1: 0,
+        // m2: 0,
+
+        // d1: 0,
+        // d2: 0,
+
         h1: 0,
         h2: 0,
 
@@ -112,11 +133,11 @@ export default {
         m2: 0,
 
         s1: 0,
-        s2: 0
+        s2: 0,
       };
       setTimeout(() => {
-          this.start();
-      }, 1000);
+        this.start();
+      }, 1300);
     }
   }
 };
@@ -141,12 +162,16 @@ export default {
 
 @bg: inear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
 @bar-width: 100px;
-main.animation-root {
+main.d-root {
   background: @bg;
   background-image: linear-gradient(to left, #e6e9f0 0%, #eef1f5 100%);
   width: 100%;
   height: 100%;
+  position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .display-area {
     width: 500px;
@@ -172,6 +197,20 @@ main.animation-root {
       transform: translateX(65%);
     }
 
+    .active-bg-card {
+        width: 64px;
+        height: 80px;
+        background-color: #222f3e;
+        // background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
+        background-blend-mode: multiply;
+        position: absolute;
+        z-index: -1;
+        border-radius: 10px;
+        box-shadow: inset -3px -3px 4px rgba(255, 255, 255, .25),
+                    inset 3px 3px 16px rgba(0, 0, 0, 0.2),
+                    ;
+    }
+
     .bar {
       width: 80px;
       height: auto;
@@ -180,7 +219,7 @@ main.animation-root {
       border-radius: 10px;
       box-shadow: -5px -5px 8px rgba(255, 255, 255, 0.65),
         4px 4px 8px rgba(0, 0, 0, 0.15);
-      transition: all 0.3s linear;
+      transition: all 0.7s ease;
       //   transition: all 1s linear;
       padding: 10px 10px;
       box-sizing: border-box;
@@ -191,11 +230,11 @@ main.animation-root {
 
         height: 80px;
         background-color: #212f3d;
-        position: absolute;
+        position: fixed;
         z-index: -1;
-        transition: all 0.3s linear;
+        transition: all 1s ease;
 
-        box-shadow: -2px -2px 3px rgba(255, 255, 255, 1),
+        box-shadow: -3px -3px 4px rgba(255, 255, 255, 1),
           5px 5px 10px rgba(0, 0, 0, 0.3);
       }
       .num {
@@ -208,7 +247,7 @@ main.animation-root {
 
         transition: all 0.3s ease-in-out;
 
-        color: #D6DBDF;
+        color: #d6dbdf;
         font-weight: normal;
         font-size: 2rem;
         text-shadow: -1px -1px 2px rgba(255, 255, 255, 0.9),
@@ -220,7 +259,8 @@ main.animation-root {
           color: #fff;
           font-weight: 500;
           font-size: 3rem;
-          text-shadow: none;
+          text-shadow: -1px -1px 5px rgba(0, 0, 0, 0.2),
+                        1px 1px 5px rgba(0, 0, 0, 0.2);
           //   background-color: #212f3d;
           //   box-shadow: -4px -4px 5px rgba(255, 255, 255, 0.9),
           //     4px 4px 5px rgba(0, 0, 0, 0.4);
