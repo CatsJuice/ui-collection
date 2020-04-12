@@ -32,7 +32,7 @@ export default [
         id: "003",
         bg: "#dfe6f6",
 
-        barShadow: `-5px -5px 12px rgba(255, 255, 255, 0.85), 4px 4px 8px rgba(0, 0, 0, 0.05), 50px 5px 10px rgba(196, 210, 239, .1), 10px 10px 10px rgba(169, 190, 232, .4)`,
+        barShadow: `-5px -5px 7px rgba(255, 255, 255, 0.45), 4px 4px 8px rgba(0, 0, 0, 0.05), 50px 5px 10px rgba(196, 210, 239, .1), 10px 10px 10px rgba(169, 190, 232, .4)`,
 
         primary: "#dfe6f6",
         primaryTextShadow: "-1px -1px 1px rgba(0, 0, 0, 0.05), 2px 2px 2px rgba(0, 0, 0, 0.3)",

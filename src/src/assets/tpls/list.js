@@ -152,4 +152,11 @@ module.exports = [
     //     tag: [],
     //     description: "波纹效果",
     // },
+    {
+        code: '0023',
+        category: '',
+        name: 'tpl-0023',
+        tag: [],
+        description: "https://dribbble.com/shots/10997012-Analysis-and-statistics-dashboard-motion",
+    }
 ]

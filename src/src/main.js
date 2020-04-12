@@ -5,6 +5,10 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+/** Ant Design */
+import { Icon } from 'ant-design-vue';
+Vue.use(Icon);
+
 new Vue({
   router,
   store,

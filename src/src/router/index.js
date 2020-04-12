@@ -22,6 +22,11 @@ const routes = [
     path: '/d/:id',
     name: 'd',
     component: () => import(/* webpackChunkName: "d" */ '../views/D.vue')
+  },
+  {
+    path: '/neumorphism/:id',
+    name: 'Neumorphism',
+    component: () => import(/* webpackChunkName: "d" */ '../views/Neumorphism.vue')
   }
 ]
 
