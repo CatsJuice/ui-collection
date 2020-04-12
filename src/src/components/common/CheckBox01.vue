@@ -31,12 +31,12 @@ export default {
       type: Boolean
     },
     size: {
-      type: Number,
-      default: 20
+      type: String,
+      default: "20"
     },
     br: {
-      type: Number,
-      default: 5
+      type: String,
+      default: "5"
     }
   },
   model: {
