@@ -37,6 +37,9 @@ export default {};
 main.animation-root {
   background-color: @bg;
   color: @bg;
+  * {
+    box-sizing: content-box;
+  }
 
   div.con {
     position: absolute;
@@ -156,14 +159,14 @@ main.animation-root {
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0);
     border: 0px solid #fff;
   }
-//   30% {
-//     // 增加阴影
-//     width: 160px;
-//     height: 80px;
-//     background-color: rgba(255, 255, 255, 1);
-//     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
-//     border: 0px solid #fff;
-//   }
+  //   30% {
+  //     // 增加阴影
+  //     width: 160px;
+  //     height: 80px;
+  //     background-color: rgba(255, 255, 255, 1);
+  //     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
+  //     border: 0px solid #fff;
+  //   }
   30% {
     // 增加阴影
     width: 160px;
@@ -247,9 +250,9 @@ main.animation-root {
     // ripple 动画结束
     top: 100%;
   }
-//   50% {
-//     top: 100%;
-//   }
+  //   50% {
+  //     top: 100%;
+  //   }
   45% {
     // 已变成手机
     top: 24px;
@@ -274,9 +277,9 @@ main.animation-root {
     // ripple 动画结束
     top: -25px;
   }
-//   50% {
-//     top: -25px;
-//   }
+  //   50% {
+  //     top: -25px;
+  //   }
   45% {
     // 已变成手机
     top: 0;

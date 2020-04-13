@@ -45,6 +45,9 @@ export default {
 @duration2: 0.3s;
 main.animation-root {
   background: @bg;
+  * {
+    box-sizing: content-box;
+  }
 
   div.small-container {
     width: 200px;

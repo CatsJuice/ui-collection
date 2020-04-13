@@ -31,6 +31,9 @@ export default {};
 main.animation-root {
   background-color: @bg;
   position: relative;
+  * {
+    box-sizing: content-box;
+  }
   .wrap {
     width: 200px;
     height: 200px;
@@ -99,7 +102,7 @@ main.animation-root {
   0% {
     left: @margin;
   }
- 10% {
+  10% {
     left: @margin;
   }
   40% {

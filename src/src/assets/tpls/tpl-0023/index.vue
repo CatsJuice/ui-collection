@@ -1,12 +1,6 @@
 <template>
   <main class="animation-root" :style="rootStyle">
-    <div
-      v-if="curAni === '0023'"
-      class="screen"
-      :style="`
-        ${curAni !== '0023' ? 'transform: scale(0.13);' : ''}
-    `"
-    >
+    <div v-if="curAni === '0023'" class="screen">
       <!-- 左侧 -->
       <div class="guide">
         <div class="top">
@@ -266,10 +260,10 @@ export default {
       return this.$store.state.currentActiveAnima;
     },
     rootStyle() {
-        if (this.curAni === '0023') return {};
-        return {
-            backgroundImage: `url(${require("./assets/imgs/prev.jpg")})`,
-        }
+      if (this.curAni === "0023") return {};
+      return {
+        backgroundImage: `url(${require("./assets/imgs/prev.jpg")})`
+      };
     }
   },
   data() {
