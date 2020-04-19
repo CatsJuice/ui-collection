@@ -165,5 +165,13 @@ module.exports = [
     //     name: 'tpl-0024',
     //     tag: [],
     //     description: "https://dribbble.com/shots/10769830-Pocket-Web-App",
-    // }
+    // },
+
+    {
+        code: '0025',
+        category: '',
+        name: 'tpl-0025',
+        tag: [],
+        description: ""
+    }
 ]

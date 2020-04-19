@@ -6,8 +6,10 @@ import store from './store'
 Vue.config.productionTip = false
 
 /** Ant Design */
-import { Icon } from 'ant-design-vue';
+import { Icon, Avatar, Slider } from 'ant-design-vue';
 Vue.use(Icon);
+Vue.use(Avatar);
+Vue.use(Slider);
 
 new Vue({
   router,
